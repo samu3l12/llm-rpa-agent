@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11723.231 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpaAgentApp", "RpaAgentApp.csproj", "{E6971214-DCA7-2597-8B45-05D833296E9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6971214-DCA7-2597-8B45-05D833296E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6971214-DCA7-2597-8B45-05D833296E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6971214-DCA7-2597-8B45-05D833296E9A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E6971214-DCA7-2597-8B45-05D833296E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6971214-DCA7-2597-8B45-05D833296E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31647331-9C3A-4DF5-A3E4-1147FCE1328D}
+	EndGlobalSection
+EndGlobal

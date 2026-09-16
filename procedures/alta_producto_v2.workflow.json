@@ -1,0 +1,101 @@
+{
+  "id": "alta_producto_v2",
+  "titulo": "Alta de Producto",
+  "descripcion": "Procedimiento para dar de alta un nuevo producto en el formulario web. Rellena nombre, precio, stock y categoria, y pulsa Guardar.",
+  "app": "formulario_productos",
+  "url": "http://localhost:8080/index.html",
+  "tags": [
+    "alta",
+    "producto",
+    "formulario",
+    "inventario"
+  ],
+  "param_schema": {
+    "nombre": {
+      "type": "string",
+      "description": "Nombre del producto",
+      "required": true
+    },
+    "precio": {
+      "type": "float",
+      "description": "Precio en euros",
+      "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "description": "Unidades en stock",
+      "required": true
+    },
+    "categoria": {
+      "type": "enum",
+      "values": [
+        "camisetas",
+        "sudaderas",
+        "pantalones",
+        "accesorios"
+      ],
+      "description": "Categoria del producto",
+      "required": true
+    }
+  },
+  "steps": [
+    {
+      "type": "wait",
+      "ms": 500
+    },
+    {
+      "type": "type",
+      "target": {
+        "by": "id",
+        "value": "nombre"
+      },
+      "value": "{{nombre}}"
+    },
+    {
+      "type": "type",
+      "target": {
+        "by": "id",
+        "value": "precio"
+      },
+      "value": "{{precio}}"
+    },
+    {
+      "type": "type",
+      "target": {
+        "by": "id",
+        "value": "stock"
+      },
+      "value": "{{stock}}"
+    },
+    {
+      "type": "select",
+      "target": {
+        "by": "id",
+        "value": "categoria"
+      },
+      "value": "{{categoria}}"
+    },
+    {
+      "type": "click",
+      "target": {
+        "by": "id",
+        "value": "btn_guardar"
+      }
+    },
+    {
+      "type": "click",
+      "target": {
+        "by": "id",
+        "value": "product_form"
+      }
+    },
+    {
+      "type": "wait_for_text",
+      "target": {
+        "by": "id",
+        "value": "toast"
+      },
+      "contains": "Guardado"
+    }
+  ]
+}

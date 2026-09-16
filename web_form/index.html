@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta de Producto</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
+        .container { max-width: 480px; width: 100%; }
+        .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); padding: 32px; }
+        h1 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 24px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; color: #333; font-size: .9rem; }
+        input, select { width: 100%; padding: 10px 14px; border: 1px solid #d0d5dd; border-radius: 8px; font-size: .95rem; margin-bottom: 18px; transition: border .2s; }
+        input:focus, select:focus { outline: none; border-color: #4a6cf7; box-shadow: 0 0 0 3px rgba(74,108,247,.15); }
+        .btn { display: inline-block; padding: 12px 28px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background .2s; }
+        .btn-primary { background: #4a6cf7; color: #fff; width: 100%; }
+        .btn-primary:hover { background: #3b5de7; }
+        #toast { position: fixed; top: 24px; right: 24px; background: #22c55e; color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 600; display: none; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+        #toast.show { display: block; animation: slideIn .3s ease; }
+        @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Alta de Producto</h1>
+            <form id="product_form" autocomplete="off">
+                <label for="nombre">Nombre del producto</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Camiseta Negra Roma" required>
+
+                <label for="precio">Precio (€)</label>
+                <input type="number" id="precio" name="precio" step="0.01" min="0" placeholder="Ej: 19.99" required>
+
+                <label for="stock">Stock (unidades)</label>
+                <input type="number" id="stock" name="stock" step="1" min="0" placeholder="Ej: 25" required>
+
+                <label for="categoria">Categoría</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">-- Seleccionar --</option>
+                    <option value="camisetas">Camisetas</option>
+                    <option value="sudaderas">Sudaderas</option>
+                    <option value="pantalones">Pantalones</option>
+                    <option value="accesorios">Accesorios</option>
+                </select>
+
+                <button type="submit" id="btn_guardar" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast">✓ Producto Guardado correctamente</div>
+
+    <script>
+        // Lógica del formulario: al enviar muestra un toast de confirmación
+        document.getElementById('product_form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = e.target;
+            if (!form.checkValidity()) return;
+            var toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 3000);
+            form.reset();
+        });
+    </script>
+</body>
+</html>

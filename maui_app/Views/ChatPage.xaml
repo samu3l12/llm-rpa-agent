@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RpaAgentApp.ViewModels"
+             x:Class="RpaAgentApp.Views.ChatPage"
+             Title="Chat RPA">
+
+    <ContentPage.BindingContext>
+        <vm:ChatViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*,Auto,Auto" BackgroundColor="#0f1117" Padding="0">
+
+        <!-- Header -->
+        <Border Grid.Row="0" BackgroundColor="#1a1d27" Padding="16" StrokeThickness="0">
+            <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="15">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="🤖 Agente RPA" FontSize="20" FontAttributes="Bold" TextColor="#a29bfe" />
+                    <Label Text="{Binding StatusText}" FontSize="12" TextColor="#8b8fa3" />
+                </VerticalStackLayout>
+                
+                <HorizontalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="8">
+                    <Label Text="Modo Debug" TextColor="#8b8fa3" FontSize="14" VerticalOptions="Center" />
+                    <Switch IsToggled="{Binding IsDebugMode}" ThumbColor="#a29bfe" OnColor="#6c5ce7" />
+                </HorizontalStackLayout>
+
+                <Button Grid.Column="2" Text="🚀 Iniciar Servidores" 
+                        Command="{Binding StartBackendCommand}" 
+                        IsVisible="{Binding IsBackendDown}" 
+                        BackgroundColor="#e17055" TextColor="White" 
+                        Padding="12,8" CornerRadius="8" FontSize="14" FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Mensajes -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Messages}" Margin="8"
+                         x:Name="MessagesCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="{Binding BubbleColor}"
+                            Padding="12,8" Margin="4"
+                            StrokeShape="RoundRectangle 12"
+                            StrokeThickness="0"
+                            HorizontalOptions="{Binding HorizontalAlign}"
+                            MaximumWidthRequest="500">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Text}" TextColor="{Binding TextColor}"
+                                   FontSize="14" FontFamily="Consolas"
+                                   LineBreakMode="WordWrap" />
+                            <Label Text="{Binding TimeString}" TextColor="#8b8fa3"
+                                   FontSize="10" HorizontalOptions="End" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Indicador de carga -->
+        <ActivityIndicator Grid.Row="2" IsRunning="{Binding IsBusy}"
+                            IsVisible="{Binding IsBusy}" Color="#6c5ce7"
+                            Margin="0,4" />
+
+        <!-- Input -->
+        <Grid Grid.Row="3" ColumnDefinitions="*,Auto" Padding="8" BackgroundColor="#1a1d27">
+            <Entry Grid.Column="0" Text="{Binding InputText}"
+                   Placeholder="Escribe tu petición..."
+                   PlaceholderColor="#8b8fa3"
+                   TextColor="#e4e6ed" BackgroundColor="#242834"
+                   FontSize="14"
+                   ReturnCommand="{Binding SendCommand}" />
+            <Button Grid.Column="1" Text="Enviar"
+                    Command="{Binding SendCommand}"
+                    BackgroundColor="#6c5ce7" TextColor="White"
+                    FontAttributes="Bold" Margin="4,0,0,0"
+                    CornerRadius="8" />
+        </Grid>
+    </Grid>
+</ContentPage>

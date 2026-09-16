@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="RpaAgentApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:RpaAgentApp.Views"
+    Title="RPA Agent"
+    Shell.BackgroundColor="#1a1d27"
+    Shell.ForegroundColor="#e4e6ed"
+    Shell.TitleColor="#a29bfe"
+    Shell.UnselectedColor="#8b8fa3"
+    Shell.TabBarBackgroundColor="#1a1d27">
+
+    <TabBar>
+        <ShellContent
+            Title="Chat"
+            ContentTemplate="{DataTemplate views:ChatPage}"
+            Route="ChatPage" />
+
+        <ShellContent
+            Title="Procedimientos"
+            ContentTemplate="{DataTemplate views:ProceduresPage}"
+            Route="ProceduresPage" />
+    </TabBar>
+
+</Shell>
